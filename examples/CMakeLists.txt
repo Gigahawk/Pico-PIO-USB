@@ -10,6 +10,18 @@ if(DEFINED DP_PIN)
     add_compile_definitions(PIO_USB_DP_PIN_DEFAULT=${DP_PIN})
 endif()
 
+if(DEFINED VBUS_EN_PIN)
+    message("Setting VBUS_EN_PIN to ${VBUS_EN_PIN}")
+    add_compile_definitions(VBUS_EN_PIN=${VBUS_EN_PIN})
+    if(DEFINED VBUS_EN_VAL)
+        message("Setting VBUS_EN_VAL to ${VBUS_EN_VAL}")
+        add_compile_definitions(VBUS_EN_VAL=${VBUS_EN_VAL})
+    else()
+        message("Setting VBUS_EN_VAL to 1")
+        add_compile_definitions(VBUS_EN_VAL=1)
+    endif()
+endif()
+
 # add pico-pio-usb library for examples
 set(PICO_PIO_USB_DIR "${CMAKE_CURRENT_LIST_DIR}/../")
 # the second argument to add_subdirectory is needed here because this isn't

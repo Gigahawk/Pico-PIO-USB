@@ -66,8 +66,19 @@ static uint8_t const keycode2ascii[128][2] =  { HID_KEYCODE_TO_ASCII };
 
 /*------------- MAIN -------------*/
 
+#ifdef VBUS_EN_PIN
+void enable_5v() {
+  gpio_init(VBUS_EN_PIN);
+  gpio_set_dir(VBUS_EN_PIN, GPIO_OUT);
+  gpio_put(VBUS_EN_PIN, VBUS_EN_VAL);
+}
+#endif
+
 // core1: handle host events
 void core1_main() {
+#ifdef VBUS_EN_PIN
+  enable_5v();
+#endif
   sleep_ms(10);
 
   // Use tuh_configure() to pass pio configuration to the host stack
