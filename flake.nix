@@ -26,6 +26,7 @@
             cmake
             clang-tools
             gcc-arm-embedded
+            python3
             ];
           shellHook = ''
             export PICO_SDK_PATH="${pico-sdk151}/lib/pico-sdk"
